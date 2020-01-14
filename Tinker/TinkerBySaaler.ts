@@ -179,7 +179,7 @@ export function Init(): void {
 export function Dynamic() {
     HeroMana = myHero.GetMana();
     EnemyHero = Input.GetNearestHeroToCursor(Enum.TeamType.TEAM_ENEMY);
-    Trevel = myHero.GetItem('item_trevel_boots', true);
+    Trevel = myHero.GetItem('item_travel_boots', true);
     Ethereal = myHero.GetItem("item_ethereal_blade", true);
     Shiva = myHero.GetItem("item_shivas_guard", true);
     Veil = myHero.GetItem("item_veil_of_discord", true);
@@ -557,13 +557,8 @@ export function TinkerAutoPush() {
             }
         }
     }
-    if (max_item != new Vector(-10e9, -10e9, 0)) {
-        console.log('YES');
-        myPlayer.PrepareUnitOrders(6,
-            target_creep,
-            null,
-            Trevel,
-            0, myHero);
+    if (target_creep && max_item != new Vector(-10e9, -10e9, 0) && Trevel.GetCooldown() === 0.0 && HeroMana > 500) {
+        Trevel.CastTarget(target_creep);
     }
 
 }
