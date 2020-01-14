@@ -552,7 +552,7 @@ export function TinkerAutoPush() {
             if (myHero.GetAbsOrigin().Distance(i.GetAbsOrigin()) > max_range) {
                 if (i.GetUnitsInRadius(1000, Enum.TeamType.TEAM_ENEMY).length > 2) {
                     target_creep = i;
-                    max_item = i.GetAbsOrigin()
+                    max_item = i.GetAbsOrigin();
                     max_range = myHero.GetAbsOrigin().Distance(i.GetAbsOrigin());
                 }
             }
