@@ -123,6 +123,10 @@ export let EnableAuto = Menu.AddKeyBind(
     'Auto Push',
     Enum.ButtonCode.KEY_NONE
 );
+
+export let minTrevel: boolean = false;
+export let maxTrevve: boolean = true;
+
 export let myHero: Hero | NPC;
 export let GameStart = false;
 export let HeroesList: Hero[];
@@ -158,6 +162,9 @@ export let e: Ability;
 export let w: Ability;
 export let r: Ability;
 export let AutoPush: boolean = false;
+
+export let x;
+export let y;
 
 export function Init(): void {
     if (GameRules.IsActiveGame()) GameStart = true;
@@ -564,11 +571,10 @@ export function TinkerAutoPush() {
 
 }
 
-Tinker.OnPrepareUnitOrders = (order) => {
-    console.log(order.order)
-}
 Tinker.OnDraw = () => {
-}
+    // Renderer.SetDrawColor(0,0,0,255);
+    // Renderer.DrawFilledRect(x / 2, y / 2, 50, 50);
+};
 Tinker.OnUpdate = () => {
     if (!GameStart || !isEnabledOption) {
         return;
@@ -587,6 +593,9 @@ Tinker.OnUpdate = () => {
 
 
 }
+Tinker.OnScriptLoad = () => {
+    [x, y] = Renderer.GetScreenSize();
+};
 Tinker.OnScriptLoad = Tinker.OnGameStart = Init;
 Tinker.OnGameEnd = () => {
     GameStart = false;
